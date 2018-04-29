@@ -5,18 +5,15 @@ import math
 import random
 import time
 
-
-
-
-#Dashes have no space
-#Letter can be only entered once 
-#How to make word capita letters
-#When press enter a new word pops up
-#sounds
-
 #Initial game setup / Title
-game = spgl.Game(1000, 800, "black", "Hangman", 5)
+game = spgl.Game(1000, 800, "black", "Hangman", 7)
 
+#Words List 
+words = ["sacred", "adult", "bob", "madeline", "because", "whatever", "hangman", "chairs", "backpack", "bodywash", "clothing",
+"computer", "python", "program", "glasses","sweatpant", "mattress", "friends", "clocks", "biology","algebra", "suitcase", "knives",
+"ninjas", "shampoo", "madeline", "okay", "because", "whatever"]
+
+#Create classes
 
 class Hangman(object):
 	def __init__(self):
@@ -24,8 +21,6 @@ class Hangman(object):
 		self.player_guess = "_______________________________________"
 		self.score = 0 
 		self.chances = 5
-
-			
 				
 	def check_guess(self, player_letter):
 			
@@ -48,10 +43,10 @@ class Hangman(object):
 		print(output)		
 		dash_label.update(output)
 		
-		# Update letters
+		# Update letters from white to blue
 		if player_letter == "a":
 			keyboard_A.set_image("keyboard_change_A.gif", 20, 20)
-			
+		
 		elif player_letter == "b":
 			keyboard_B.set_image("keyboard_change_B.gif", 20, 20)
 			
@@ -126,9 +121,14 @@ class Hangman(object):
 			
 		elif player_letter == "z":
 			keyboard_Z.set_image("keyboard_change_Z.gif", 20, 20)
+			
+		if player_letter in "abcdefghijklmnopqrstuvwxyz":
+			game.play_sound("alphabet_clicked.wav") 
+
 
 		if "_" not in hangman.player_guess:
 			hangman.score += 10
+			game.play_sound("correct_answer_sound.wav -v 0.1")
 			score_label.update("SCORE: {}".format(hangman.score))
 			you_win.showturtle()
 			game.tick()
@@ -140,21 +140,44 @@ class Hangman(object):
 			hangman_body.hideturtle()
 			hangman_hands.hideturtle()
 			hangman_legs.hideturtle()
-			you_win.hideturtle()	
-			keyboard_A.hideturtle()
-			hangman.check_guess(" ")		
+			you_win.hideturtle()
+			hangman.check_guess(" ")
+			keyboard_A.set_image("keyboard_A.gif", 20, 20)
+			keyboard_B.set_image("keyboard_B.gif", 20, 20)		
+			keyboard_C.set_image("keyboard_C.gif", 20, 20)
+			keyboard_D.set_image("keyboard_D.gif", 20, 20)
+			keyboard_E.set_image("keyboard_E.gif", 20, 20)
+			keyboard_F.set_image("keyboard_F.gif", 20, 20)
+			keyboard_G.set_image("keyboard_G.gif", 20, 20)
+			keyboard_H.set_image("keyboard_H.gif", 20, 20)
+			keyboard_I.set_image("keyboard_I.gif", 20, 20)
+			keyboard_J.set_image("keyboard_J.gif", 20, 20)
+			keyboard_K.set_image("keyboard_K.gif", 20, 20)
+			keyboard_L.set_image("keyboard_L.gif", 20, 20)
+			keyboard_M.set_image("keyboard_M.gif", 20, 20)
+			keyboard_N.set_image("keyboard_N.gif", 20, 20)
+			keyboard_O.set_image("keyboard_O.gif", 20, 20)
+			keyboard_P.set_image("keyboard_P.gif", 20, 20)
+			keyboard_Q.set_image("keyboard_Q.gif", 20, 20)
+			keyboard_R.set_image("keyboard_R.gif", 20, 20)
+			keyboard_S.set_image("keyboard_S.gif", 20, 20)
+			keyboard_T.set_image("keyboard_T.gif", 20, 20)
+			keyboard_U.set_image("keyboard_U.gif", 20, 20)
+			keyboard_V.set_image("keyboard_V.gif", 20, 20)
+			keyboard_W.set_image("keyboard_W.gif", 20, 20)
+			keyboard_X.set_image("keyboard_X.gif", 20, 20)
+			keyboard_Y.set_image("keyboard_Y.gif", 20, 20)
+			keyboard_Z.set_image("keyboard_Z.gif", 20, 20)
+			
 			
 	
 		if player_letter not in hangman.correct_answer and player_letter != " ":
 			hangman.chances -= 1
 			chances_label.update("CHANCES: {}".format(hangman.chances))
 			
-		
-			
-			
+					
 		self.display_hangman()
-	
-	
+		
 	def display_hangman(self):
 		if self.chances == 4:
 			hangman_face.showturtle()
@@ -166,60 +189,26 @@ class Hangman(object):
 			hangman_legs.showturtle()
 		elif self.chances == 0:
 			you_lose.showturtle()
-			
-		
+			correct_word_label.update("CORRECT WORD: {}".format(self.correct_answer))
+			game.play_sound("fail_answer_sound.wav -v 0.1") 
 
-words = ["sacred", "adult", "bob", "madeline", "because", "whatever"]
-
-#Create classes
 class Title(spgl.Sprite):
 	def __init__ (self, shape, color, x, y):
 		spgl.Sprite.__init__(self, shape, color, x, y)
 		self.shape("title.gif")
-
-class Hangman_Stand(spgl.Sprite):
-	def __init__(self, shape, color, x, y):
-		spgl.Sprite.__init__(self, shape, color, x, y)
-		self.shape("hangman_stand.gif")
-		self.speed = 0 
-
-class Hangman_Face(spgl.Sprite):
-	def __init__(self, shape, color, x, y):
-		spgl.Sprite.__init__(self, shape, color, x, y)
-		self.shape("hangman_face.gif")
-		self.speed = 0 
-			
-class Hangman_Body(spgl.Sprite):
-	def __init__(self, shape, color, x, y):
-		spgl.Sprite.__init__(self, shape, color, x, y)
-		self.shape("hangman_body.gif")
-		self.speed = 0 
 		
-class Hangman_Hands(spgl.Sprite):
+class Hangman_Images(spgl.Sprite):
 	def __init__(self, shape, color, x, y):
 		spgl.Sprite.__init__(self, shape, color, x, y)
-		self.shape("hangman_hands.gif")
-		self.speed = 0 
-		
-class Hangman_Legs(spgl.Sprite):
-	def __init__(self, shape, color, x, y):
-		spgl.Sprite.__init__(self, shape, color, x, y)
-		self.shape("hangman_legs.gif")
-		self.speed = 0 
-		
 
-
-#Keyboard Class		
 class Keyboard_Image(spgl.Sprite):
 	def __init__(self, shape, color, x, y):
 		spgl.Sprite.__init__(self, shape, color, x, y)
-
 		
 class You_Lose(spgl.Sprite):
 	def __init__(self, shape, color, x, y):
 		spgl.Sprite.__init__(self, shape, color, x, y)
-		
-		
+				
 class You_Win(spgl.Sprite):
 	def __init__(self, shape, color, x, y):
 		spgl.Sprite.__init__(self, shape, color, x, y)
@@ -227,18 +216,23 @@ class You_Win(spgl.Sprite):
 
 
 #Create Functions
-	
 
+def keypress(event):
+	key = event.char
+	hangman.check_guess(key)
+
+root = spgl.turtle.getcanvas()
+root.bind("<Key>", keypress)
 #Create instances		
-title = Title("title.gif", "black", 300.0, 190.0)
-hangman_stand = Hangman_Stand("hangman_stand.gif","white", -325.0, 150.0)
-hangman_face = Hangman_Face("hangman_face.gif","white", -248.0, 228.0)
-hangman_body = Hangman_Body("hangman_body.gif","white", -235.0, 158.0)
-hangman_hands = Hangman_Hands("hangman_hands.gif","white", -245.0, 158.0)
-hangman_legs = Hangman_Legs("hangman_legs.gif","white", -235.0, 92.0)
+title = Title("title.gif", "black", 190.0,348.0) 
+
+hangman_stand = Hangman_Images("hangman_stand.gif","white", -325.0, 100.0)
+hangman_face = Hangman_Images("hangman_face.gif","white", -248.0, 228.0)
+hangman_body = Hangman_Images("hangman_body.gif","white", -235.0, 158.0)
+hangman_hands = Hangman_Images("hangman_hands.gif","white", -245.0, 158.0)
+hangman_legs = Hangman_Images("hangman_legs.gif","white", -235.0, 92.0)
 you_lose = You_Lose("you_lose.gif","white", 0, 0)
 you_win = You_Win("you_win.gif","white", 0, 0)
-
 hangman_face.hideturtle()
 hangman_body.hideturtle()
 hangman_hands.hideturtle()
@@ -273,13 +267,10 @@ keyboard_Y = Keyboard_Image("keyboard_Y.gif","white", 25.0, -147.0)
 keyboard_Z = Keyboard_Image("keyboard_Z.gif","white", -295, -280.0)
 
 hangman = Hangman()
-#Create Sprites
-
-
-
 
 # Create Labels
-dash_label = spgl.Label("_", "white", 0, 0)
+dash_label = spgl.Label("_", "white", 0,0)
+
 dash_label.set_font_name("Krungthep")
 dash_label.set_font_size(100)
 
@@ -287,36 +278,28 @@ dash_label.set_font_name("Krungthep")
 dash_label.set_font_type("bold") 
 dash_label.set_font_size(60)
 
-score_label = spgl.Label("SCORE: 0", "white", -459.0,-17.0)
+
+score_label = spgl.Label("SCORE: 0", "white", -459.0,-77.0)
 score_label.set_font_name("Krungthep")
 score_label.set_font_size(20)
 
-chances_label = spgl.Label("CHANCES: 6", "white",-459.0,-35.0)
+chances_label = spgl.Label("CHANCES: 6", "white",-459.0,-100.0)
 chances_label.set_font_name("Krungthep")
 chances_label.set_font_size(20)
 
 
-def keypress(event):
-	key = event.char
-	hangman.check_guess(key)
-		
-root = spgl.turtle.getcanvas()
-root.bind("<Key>", keypress)
+# -444.0,-100.0)
+
+correct_word_label = spgl.Label(" ", "red", 7.0,95.0)
+correct_word_label.set_font_name("Krungthep")
+correct_word_label.set_font_size(30)
+
+
 
 
 while True:
     # Call the game tick method
 	game.tick()
-	
-	# if hangman.chance == 0:
-# 		print("You lose")
-		
-		
-		 # if not guess_character in secret_word:
-#             wrong_guess += 1
-#             return wrong_guess
-#             pass
 
-	# hangman.score()
 
 	
