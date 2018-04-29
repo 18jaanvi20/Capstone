@@ -16,7 +16,7 @@ game = spgl.Game(1000, 800, "black", "Hangman", 7)
 		
 
 words = ["sacred", "adult", "bob", "madeline", "because", "whatever", "hangman", "chairs", "backpack", "bodywash", "clothing",
-"computer", "python", "program", "glasses", "sweatshirt","sweatpants", "mattress", "friends", "clocks", "biology","algebra", "suitcase", "knives",
+"computer", "python", "program", "glasses","sweatpant", "mattress", "friends", "clocks", "biology","algebra", "suitcase", "knives",
 "ninjas", "shampoo", "madeline", "okay", "because", "whatever"]
 
 #Create classes
@@ -148,7 +148,34 @@ class Hangman(object):
 			hangman_hands.hideturtle()
 			hangman_legs.hideturtle()
 			you_win.hideturtle()
-			hangman.check_guess(" ")		
+			hangman.check_guess(" ")
+			keyboard_A.set_image("keyboard_A.gif", 20, 20)
+			keyboard_B.set_image("keyboard_B.gif", 20, 20)		
+			keyboard_C.set_image("keyboard_C.gif", 20, 20)
+			keyboard_D.set_image("keyboard_D.gif", 20, 20)
+			keyboard_E.set_image("keyboard_E.gif", 20, 20)
+			keyboard_F.set_image("keyboard_F.gif", 20, 20)
+			keyboard_G.set_image("keyboard_G.gif", 20, 20)
+			keyboard_H.set_image("keyboard_H.gif", 20, 20)
+			keyboard_I.set_image("keyboard_I.gif", 20, 20)
+			keyboard_J.set_image("keyboard_J.gif", 20, 20)
+			keyboard_K.set_image("keyboard_K.gif", 20, 20)
+			keyboard_L.set_image("keyboard_L.gif", 20, 20)
+			keyboard_M.set_image("keyboard_M.gif", 20, 20)
+			keyboard_N.set_image("keyboard_N.gif", 20, 20)
+			keyboard_O.set_image("keyboard_O.gif", 20, 20)
+			keyboard_P.set_image("keyboard_P.gif", 20, 20)
+			keyboard_Q.set_image("keyboard_Q.gif", 20, 20)
+			keyboard_R.set_image("keyboard_R.gif", 20, 20)
+			keyboard_S.set_image("keyboard_S.gif", 20, 20)
+			keyboard_T.set_image("keyboard_T.gif", 20, 20)
+			keyboard_U.set_image("keyboard_U.gif", 20, 20)
+			keyboard_V.set_image("keyboard_V.gif", 20, 20)
+			keyboard_W.set_image("keyboard_W.gif", 20, 20)
+			keyboard_X.set_image("keyboard_X.gif", 20, 20)
+			keyboard_Y.set_image("keyboard_Y.gif", 20, 20)
+			keyboard_Z.set_image("keyboard_Z.gif", 20, 20)
+			
 			
 	
 		if player_letter not in hangman.correct_answer and player_letter != " ":
@@ -251,7 +278,8 @@ keyboard_Z = Keyboard_Image("keyboard_Z.gif","white", -295, -280.0)
 hangman = Hangman()
 
 # Create Labels
-dash_label = spgl.Label("_", "white", 0, 0)
+dash_label = spgl.Label("_", "white", 0,0)
+
 dash_label.set_font_name("Krungthep")
 dash_label.set_font_size(100)
 
