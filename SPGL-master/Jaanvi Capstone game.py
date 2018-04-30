@@ -5,6 +5,9 @@ import math
 import random
 import time
 
+#chances =6
+# hangman face shown
+
 #Initial game setup / Title
 game = spgl.Game(1000, 800, "black", "Hangman", 7)
 
@@ -136,6 +139,7 @@ class Hangman(object):
 			self.correct_answer = random.choice(words)
 			self.player_guess = "_______________________________________"
 			self.chances = 5
+			chances_label.update("CHANCES: {}".format(hangman.chances))
 			hangman_face.hideturtle()
 			hangman_body.hideturtle()
 			hangman_hands.hideturtle()
@@ -179,7 +183,12 @@ class Hangman(object):
 		self.display_hangman()
 		
 	def display_hangman(self):
-		if self.chances == 4:
+		if self.chances == 5:
+			hangman_face.hideturtle()
+			hangman_body.hideturtle()
+			hangman_hands.hideturtle()
+			hangman_legs.hideturtle()	
+		elif self.chances == 4:
 			hangman_face.showturtle()
 		elif self.chances == 3:
 			hangman_body.showturtle()
@@ -282,7 +291,7 @@ score_label = spgl.Label("SCORE: 0", "white", -459.0,-77.0)
 score_label.set_font_name("Krungthep")
 score_label.set_font_size(20)
 
-chances_label = spgl.Label("CHANCES: 6", "white",-459.0,-100.0)
+chances_label = spgl.Label("CHANCES: 5", "white",-459.0,-100.0)
 chances_label.set_font_name("Krungthep")
 chances_label.set_font_size(20)
 
