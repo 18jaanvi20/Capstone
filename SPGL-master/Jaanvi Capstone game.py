@@ -139,7 +139,7 @@ class Hangman(object):
 			self.correct_answer = random.choice(words)
 			self.player_guess = "_______________________________________"
 			self.chances = 5
-			chances_label.update("CHANCES: {}".format(hangman.chances))
+			chances_label.update("CHANCES: 5")
 			hangman_face.hideturtle()
 			hangman_body.hideturtle()
 			hangman_hands.hideturtle()
@@ -172,23 +172,19 @@ class Hangman(object):
 			keyboard_X.set_image("keyboard_X.gif", 20, 20)
 			keyboard_Y.set_image("keyboard_Y.gif", 20, 20)
 			keyboard_Z.set_image("keyboard_Z.gif", 20, 20)
-			
-			
 	
-		if player_letter not in hangman.correct_answer and player_letter != " ":
-			hangman.chances -= 1
-			chances_label.update("CHANCES: {}".format(hangman.chances))
+			
+		else:	
+	
+			if player_letter not in hangman.correct_answer and player_letter != " ":
+				hangman.chances -= 1
+				chances_label.update("CHANCES: {}".format(hangman.chances))
 			
 					
 		self.display_hangman()
 		
 	def display_hangman(self):
-		if self.chances == 5:
-			hangman_face.hideturtle()
-			hangman_body.hideturtle()
-			hangman_hands.hideturtle()
-			hangman_legs.hideturtle()	
-		elif self.chances == 4:
+		if self.chances == 4:
 			hangman_face.showturtle()
 		elif self.chances == 3:
 			hangman_body.showturtle()
